@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SIS - Arduino - Ультразвуковой сенсор (HC-SR04)</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../custom.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <!-- Static navbar -->
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <img src="http://10.0.0.2/mail/logo.png" height="50px;" class="navbar-logo"/>
+            <div class="navbar-brand">Arduino club</div>
+          </div>
+        </div><!--/.container-fluid -->
+      </nav>
+
+    <ol class="breadcrumb">
+      <li><a href="../index.html">Главная</a></li>
+      <li class="active">Ультразвуковой сенсор (HC-SR04)</li>
+    </ol>
+
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <div class="row">
+<h2 class="sectionedit1">Ультразвуковой сенсор (HC-SR04)</h2>
+<div class="level1">
+
+Рассмотрим ультразвуковой датчик измерения расстояния <b>HC-SR04</b> (Ultrasonic ranging module HC-SR04). <br/>
+<img src="images/hcsr1.jpg"/><br/>
+<b>Особенности</b><br/>
+Напряжение питания: <b>5V DC</b><br/>
+Ток покоя: <b>&lt;2mA</b><br/>
+Эффективный угол: <b>&lt;15°</b><br/>
+Диапазон измерения расстояния: <b>2–400 cm</b><br/>
+Разрешение: <b>0.3 cm</b><br/>
+<img src="images/hcsr2.jpg"/><br/>
+Разъём сенсора — 4 обычных пина (2.54), что позволяет просто воткнуть его в беспаечную плату, припаять к макетной плате или использовать для подключения обычные пины (типа мама).<br/>
+<br/>
+<b>Размеры</b><br/>
+<img src="images/hcsr3.png"/><br/>
+<br/>
+<b>Диаграмма направленности</b><br/>
+<img src="images/hcsr4.png"/><br/>
+<br/>
+<h3>Принцип работы</h3><br/>
+Сенсор излучает короткий ультразвуковой импульс (в момент времени 0), который отражается от объекта и принимается сенсором. Расстояние рассчитывается исходя из времени до получения эха и скорости звука в воздухе.<br/>
+<img src="images/hcsr5.png"/><br/>
+Т.о., сенсор получает сигнал эха, и выдаёт расстояние, которое кодируется длительностью электрического сигнал на выходе датчика (Echo). <br/>
+Следующий импульс может быть излучён, только после исчезновения эха от предыдущего. Это время называется периодом цикла (cycle period). Рекомендованный период между импульсами должен быть не менее <b>50 мс</b>. <br/>
+Если на сигнальный пин (Trig) подаётся импульс длительностью <b>10 мкс</b>, то ультразвуковой модуль будет излучать восемь пачек ультразвукового сигнала с частотой <b>40кГц</b> и обнаруживать их эхо. Измеренное расстояние до объекта пропорционально ширине эха (Echo) и может быть рассчитано по формуле, приведённой на графике выше. <br/>
+<blockquote>Документация на сенсор, так же указывает, что если никаких препятствий не обнаружено, то на выходе будет сигнал с длительностью 38ms.</blockquote><br/>
+<br/>
+<h3>Arduino и HC-SR04</h3><br/>
+Подключить датчик очень просто<br/>
+<img src="images/hcsr6.jpg"/><br/>
+ — можно удобно воткнуть его в беспаечную макетную плату, подключить +5V и GND от контроллера Arduino и подключить выводы датчика Trig и Echo к цифровым пинам контроллера.<br/>
+<br/>
+
+
+</div>
+        </div>
+      </div>
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../jquery.min.js"></script>
+    <script src="../bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<!--    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>-->
+  </body>
+</html>

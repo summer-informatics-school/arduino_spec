@@ -1,0 +1,158 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SIS - Arduino - Кнопка</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../custom.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <!-- Static navbar -->
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <img src="http://10.0.0.2/mail/logo.png" height="50px;" class="navbar-logo"/>
+            <div class="navbar-brand">Arduino club</div>
+          </div>
+        </div><!--/.container-fluid -->
+      </nav>
+
+    <ol class="breadcrumb">
+      <li><a href="../index.html">Главная</a></li>
+      <li class="active">Кнопка</li>
+    </ol>
+
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <div class="row">
+<h2 class="sectionedit1">Кнопка</h2>
+<div class="level1">
+
+<p>
+
+Тактовая кнопка — простой, всем известный механизм,
+замыкающий цепь пока есть давление на толкатель.
+</p>
+
+<p>
+<img src="images/button1.png" class="mediacenter" alt="" />
+</p>
+
+<p>
+Кнопки с 4 контактами
+стоит рассматривать,
+как 2 пары рельс, которые
+соединяются при нажатии.
+</p>
+
+</div>
+
+<h2 class="sectionedit2">Эффект дребезга</h2>
+<div class="level2">
+
+<p>
+
+<img src="images/button2.png" class="mediacenter" alt="" />
+</p>
+
+<p>
+При замыкании и размыкании между пластинами кнопки
+возникают микроискры, провоцирующие до десятка
+переключений за несколько миллисекунд. Явление
+называется <em>дребезгом</em> (англ. bounce). Это нужно
+учитывать, если необходимо фиксировать «клики».
+</p>
+
+</div>
+
+<h2 class="sectionedit3">Схема подключения</h2>
+<div class="level2">
+
+<p>
+
+Напрашивается подключение напрямую. Но это наивный, неверный способ.
+</p>
+
+<p>
+<img src="images/button3.png" class="mediacenter" alt="" />
+</p>
+
+<p>
+Пока кнопка нажата, выходное напряжение Vout = Vcc,
+но пока она отпущена, Vout ≠ 0. Кнопка и провода в этом случае
+работают как антенна, и Vout будет «шуметь», принимая случайные
+значения «из воздуха».
+</p>
+
+<p>
+Пока соединения нет, необходимо дать резервный, слабый путь,
+делающий напряжение определённым. Для этого используют один из
+двух вариантов.
+</p>
+
+</div>
+
+<h3 class="sectionedit4">Схема со стягивающим резистором</h3>
+<div class="level3">
+
+<p>
+
+<img src="images/button4.png" class="mediacenter" alt="" />
+
+</p>
+<ul>
+<li class="level1"><div class="li"> Есть нажатие: Vout = Vcc</div>
+</li>
+<li class="level1"><div class="li"> Нет нажатия: Vout = 0</div>
+</li>
+</ul>
+
+</div>
+
+<h3 class="sectionedit5">Схема с подтягивающим резистором</h3>
+<div class="level3">
+
+<p>
+
+<img src="images/button5.png" class="mediacenter" alt="" />
+
+</p>
+<ul>
+<li class="level1"><div class="li"> Есть нажатие: Vout = 0</div>
+</li>
+<li class="level1"><div class="li"> Нет нажатия: Vout = Vcc</div>
+</li>
+</ul>
+
+</div>
+        </div>
+      </div>
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../jquery.min.js"></script>
+    <script src="../bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<!--    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>-->
+  </body>
+</html>

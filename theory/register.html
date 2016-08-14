@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SIS - Arduino - Выходной сдвиговый регистр 74HC595</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../custom.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <!-- Static navbar -->
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <img src="http://10.0.0.2/mail/logo.png" height="50px;" class="navbar-logo"/>
+            <div class="navbar-brand">Arduino club</div>
+          </div>
+        </div><!--/.container-fluid -->
+      </nav>
+
+    <ol class="breadcrumb">
+      <li><a href="../index.html">Главная</a></li>
+      <li class="active">Выходной сдвиговый регистр 74HC595</li>
+    </ol>
+
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <div class="row">
+            <h2>Выходной сдвиговый регистр 74HC595</h2>
+<img src="images/register.png" />
+<br>
+Микросхема 74HC595 — один из самых распространённых сдвиговых регистров: синхронный, с регистром данных (latch). Она позволяет увеличивать количество выходов микроконтроллера.
+Чип преобразовывает входящий последовательный сигнал на 1 пине (Ds) в выходной параллельный на 8 пинах (Qx). Последовательная передача синхронна: для такта используется дополнительный пин (SHcp). Также отдельным пином управляется регистр данных (STcp), что позволяет изменять сигнал на 8 выходах единовременно, когда все данные переданы.
+<br>
+<img src="images/register2.png" />
+<br>
+Таким образом образом из трёх пинов микроконтроллера, такого как Arduino, можно получить 8 цифровых выходов. Из регистров 74HC595 можно делать каскады, подключая один за другим (через пин Q7’), и таким образом из всё тех же 3 входящих линий получать 16, 24, 32 и т.д. цифровых выходов.
+Используйте сдвиговый регистр для увеличения количества выходов микроконтроллера. Например, для управления большим количеством светодиодов.
+Для удобной работы с чипом через Arduino, существует встроенная функция <code>shiftOut</code>.
+        </div>
+      </div>
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../jquery.min.js"></script>
+    <script src="../bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<!--    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>-->
+  </body>
+</html>

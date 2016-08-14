@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SIS - Arduino - Маячок c нарастающей яркостью</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../custom.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../monokai_sublime.css">
+    <script src="../highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <!-- Static navbar -->
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <img src="http://10.0.0.2/mail/logo.png" height="50px;" class="navbar-logo"/>
+            <div class="navbar-brand">Arduino club</div>
+          </div>
+        </div>
+      </nav>
+
+    <ol class="breadcrumb">
+      <li><a href="../index.html">Главная</a></li>
+      <li class="active">Эксперимент - Маячок c нарастающей яркостью</li>
+    </ol>
+
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron">
+      <div class="row">
+        <h2>Маячок c нарастающей яркостью</h2>
+        В этом эксперименте мы задаем различные уровни яркости светодиода.
+      </div>
+      <div class="row">
+        <h3>Список деталей для эксперимента</h3>
+        <ul>
+            <li>1 светодиод</li>
+            <li>1 резистор номиналом 220 Ом</li>
+            <li>2 провода</li>
+        </ul>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+            <h3>Схема на макетке</h3>
+            <img width="100%" src="images/basic2_bb.png"/>
+        </div>
+        <div class="col-md-6">
+            <h3>Скетч</h3>
+            <pre>
+            <code class="c++">// даём разумное имя для пина №9 со светодиодом
+// (англ. Light Emitting Diode или просто «LED»)
+// Так нам не нужно постоянно вспоминать куда он подключён
+#define LED_PIN 9
+ 
+void setup()
+{
+  // настраиваем пин со светодиодом в режим выхода,
+  // как и раньше
+  pinMode(LED_PIN, OUTPUT);
+}
+ 
+void loop()
+{
+  // выдаём неполное напряжение на светодиод
+  // (он же ШИМ-сигнал, он же PWM-сигнал).
+  // Микроконтроллер переводит число
+  // от 0 до 255 к напряжению
+  // от 0 до 5 В. Например, 85 — это 1/3 от 255,
+  // т.е. 1/3 от 5 В, т.е. 1,66 В.
+  analogWrite(LED_PIN, 85);
+  // держим такую яркость 250 миллисекунд
+  delay(250);
+ 
+  // выдаём 170, т.е. 2/3 от 255,
+  // или иными словами — 3,33 В.
+  // Больше напряжение — выше яркость!
+  analogWrite(LED_PIN, 170);
+  delay(250);
+ 
+  // все 5 В — полный накал!
+  analogWrite(LED_PIN, 255);
+  // ждём ещё немного перед тем, как начать всё заново
+  delay(250);
+}            </code>
+            </pre>
+        </div>
+      </div>
+      <div class="row">
+        <h3>Обратите внимание</h3>
+        <ul>
+          <li>Не любой порт Arduino поддерживает широтно-импульсную модуляцию, если вы хотите регулировать напряжение, вам подойдут пины, помеченные символом тильда «~». Для Arduino Uno это пины 3, 5, 6, 9, 10, 11</li>          
+        </ul>
+      </div>
+      </div>
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../jquery.min.js"></script>
+    <script src="../bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<!--    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>-->
+  </body>
+</html>

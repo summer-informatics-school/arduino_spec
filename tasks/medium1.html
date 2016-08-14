@@ -1,0 +1,137 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SIS - Arduino - Пульсар</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../custom.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../monokai_sublime.css">
+    <script src="../highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <!-- Static navbar -->
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <img src="http://10.0.0.2/mail/logo.png" height="50px;" class="navbar-logo"/>
+            <div class="navbar-brand">Arduino club</div>
+          </div>
+        </div>
+      </nav>
+
+    <ol class="breadcrumb">
+      <li><a href="../index.html">Главная</a></li>
+      <li class="active">Эксперимент - Пульсар</li>
+    </ol>
+
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron">
+      <div class="row">
+        <h2>Пульсар</h2>
+        В этом эксперименте мы плавно наращиваем яркость светодиодной шкалы, управляя большой нагрузкой через транзистор.
+      </div>
+      <div class="row">
+        <h3>Список деталей для эксперимента</h3>
+        <ul>
+            <li>1 светодиодная шкала</li>
+            <li>1 биполярный транзистор</li>
+            <li>1 резистор номиналом 1 кОм</li>
+            <li>10 резисторов номиналом 220 Ом</li>
+            <li>13 проводов</li>
+        </ul>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+            <h3>Схема на макетке</h3>
+            <img width="100%" src="images/medium1_bb.png"/>
+        </div>
+        <div class="col-md-6">
+            <h3>Скетч</h3>
+            <pre>
+            <code class="c++">#define CONTROL_PIN  9
+ 
+// переменные верхнего уровня, т.е. объявленные вне функций,
+// называют глобальными. Их значения сохраняются всё время,
+// пока работает микроконтроллер
+int brightness = 0;
+ 
+void setup()
+{
+  pinMode(CONTROL_PIN, OUTPUT);
+}
+ 
+void loop()
+{
+  // увеличиваем значение яркости на единицу, чтобы нарастить
+  // яркость. Однако яркость не должна быть более 255, поэтому
+  // используем операцию остатка от деления, чтобы при
+  // достижении значения 255, следующим значением снова стал 0
+  // Y % X — это остаток от деления Y на X;
+  // плюс, минус, делить, умножить, скобки — как в алгебре.
+  brightness = (brightness + 1) % 256;
+ 
+  // подаём вычисленный ШИМ-сигнал яркости на пин с базой
+  // управляющего транзистора
+  analogWrite(CONTROL_PIN, brightness);
+ 
+  // ждём 10 мс перед следующим наращиванием яркости. Таким
+  // образом, полный накал будет происходить в течение
+  // 256×10 = 2560 мс
+  delay(10);
+}            </code>
+            </pre>
+        </div>
+      </div>
+      <div class="row">
+        <h3>Обратите внимание</h3>
+<ul>
+<li class="level1"><div class="li"> Светодиодная шкала — это несколько светодиодов в одном корпусе. Нам нужно чтобы питание шло к их анодам, а катоды направлялись к земле. Скорее всего на вашей шкале аноды находятся со стороны маркировки. Если шкала не светится, когда должна, попробуйте перевернуть ее.</div>
+</li>
+<li class="level1"><div class="li"> База биполярного транзистора — это его средняя ножка. Если повернуть транзистор плоской стороной к себе, ножками вниз, то левая ножка это коллектор, а правая — эмиттер.</div>
+</li>
+<li class="level1"><div class="li"> Если эту схему собрать без резистора между базой транзистора и портом Arduino, мы практически устроим короткое замыкание порта на землю. Рано или поздно это выведет из строя транзистор или ножку микроконтроллера.</div>
+</li>
+<li class="level1"><div class="li"> Зачем здесь вообще транзистор? Без него такое количество светодиодов будет потреблять больше тока, чем 40 мА, которые может себе позволить цифровой пин платы. Поэтому мы берем питание из порта 5V, рассчитанного на ток до 500 мА, а на цифровой порт ставим транзистор, чтобы с помощью малого тока управлять большим.</div>
+</li>
+<li class="level1"><div class="li"> В данном случае мы включили 10 светодиодов параллельно, каждый через отдельный резистор. Включать их через один резистор неправильно: даже светодиоды из одной партии имеют минимальный разброс вольт-амперных характеристик, вследствие чего они:</div>
+<ol>
+<li class="level2"><div class="li"> Светились бы с различной яркостью</div>
+</li>
+<li class="level2"><div class="li"> Из-за минимальной разницы во времени включения, больший ток, прошедший через первый включившийся светодиод, мог бы вывести его из строя. И так по цепочке.</div>
+</li>
+</ol>
+</li>
+</ul>
+      </div>
+      </div>
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../jquery.min.js"></script>
+    <script src="../bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<!--    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>-->
+  </body>
+</html>

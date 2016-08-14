@@ -1,0 +1,143 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SIS - Arduino - Основные законы электричества</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../custom.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <!-- Static navbar -->
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <img src="http://10.0.0.2/mail/logo.png" height="50px;" class="navbar-logo"/>
+            <div class="navbar-brand">Arduino club</div>
+          </div>
+        </div><!--/.container-fluid -->
+      </nav>
+
+    <ol class="breadcrumb">
+      <li><a href="../index.html">Главная</a></li>
+      <li class="active">Основные законы электричества</li>
+    </ol>
+
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <div class="row">
+<h2 class="sectionedit2">Закон Ома</h2>
+
+<p>
+
+Закон Ома — главный закон электричества
+</p>
+
+<p>
+<img src="images/zakon1.png" class="mediacenter" alt="" />
+</p>
+
+
+<h2 class="sectionedit3">Мощность</h2>
+
+<p>
+
+Мощность — мера скорости трансформации электрической энергии в другую форму
+</p>
+
+<p>
+<img src="images/zakon2.png" class="mediacenter" alt="" />
+</p>
+
+<p>
+Зная закон Ома, можно заметить, что мощность можно рассчитать иначе:
+</p>
+
+<p>
+<img src="images/zakon_latex.png" class="latex_displayed" alt="$$P = I^2 \times R = \frac{U^2}{R}$$" title="Equation" />
+</p>
+
+<p>
+Мир не идеален и часть электроэнергии непременно трансформируется в тепло. Из-за
+этого и греются компьютеры, телефоны, телевизоры и другая электроника.
+</p>
+
+<p>
+<img src="images/zakon3.png" class="mediacenter" alt="" />
+</p>
+
+
+<h2 class="sectionedit4">Короткое замыкание</h2>
+
+<p>
+
+<img src="images/zakon4.png" class="medialeft" style="margin-right: 10px;" align="left" alt="" />
+</p>
+
+<p>
+Соединение плюса с минусом напрямую, по закону Ома, приводит к очень большому току,
+следовательно к очень большой мощности нагрева, что в итоге приводит к возгоранию.
+</p>
+
+<p>
+Это называется <em>коротким замыканием</em> или в просторечии просто «козой».
+Никогда не допускайте его, ни при каких обстоятельствах!
+</p>
+
+
+<h2 class="sectionedit5">Последовательное подключение</h2>
+
+<p>
+
+При последовательном подключении сила тока в каждом потребителе — одна и та же,
+различается напряжение: в каждом компоненте <em>падает</em> его часть.
+</p>
+
+<p>
+<img src="images/zakon5.png" class="mediacenter" alt="" />
+</p>
+
+
+<h2 class="sectionedit6">Параллельное подключение</h2>
+
+<p>
+
+При параллельном подключении напряжение вокруг каждого
+потребителя — одно и то же, различается сила тока: каждый
+потребляет ток в соответствии с собственным сопротивлением.
+</p>
+
+<p>
+<img src="images/zakon6.png" alt="" />
+</p>
+<hr />
+        </div>
+      </div>
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../jquery.min.js"></script>
+    <script src="../bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<!--    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>-->
+  </body>
+</html>

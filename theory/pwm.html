@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SIS - Arduino - Широтно-импульсная модуляция</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../custom.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <!-- Static navbar -->
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <img src="http://10.0.0.2/mail/logo.png" height="50px;" class="navbar-logo"/>
+            <div class="navbar-brand">Arduino club</div>
+          </div>
+        </div><!--/.container-fluid -->
+      </nav>
+
+    <ol class="breadcrumb">
+      <li><a href="../index.html">Главная</a></li>
+      <li class="active">Широтно-импульсная модуляция</li>
+    </ol>
+
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <div class="row">
+<h2 class="sectionedit1">Широтно-импульсная модуляция</h2>
+<div class="level1">
+
+<p>
+
+Микроконтроллеры обычно не могут выдавать произвольное
+напряжение. Они могут выдать либо напряжение питания
+(например, 5 В), либо землю (т.е. 0 В)
+</p>
+
+<p>
+Но уровнем напряжения управляется многое: например, яркость
+светодиода или скорость вращения мотора. Для симуляции
+неполного напряжения используется <em>ШИМ</em> (Широтно-Импульсная
+Модуляция, англ. Pulse Width Modulation или просто <em>PWM</em>)
+</p>
+
+<p>
+<img src="images/pwm1.png" class="mediacenter" alt="" />
+</p>
+
+</div>
+
+<h2 class="sectionedit2">Применение</h2>
+<div class="level2">
+
+<p>
+
+Выход микроконтроллера переключается между землёй и Vcc
+тысячи раз в секунду. Или, как ещё говорят, имеет частоту в тысячи герц.
+Глаз не замечает мерцания более 50 Гц, поэтому нам кажется, что светодиод не мерцает,
+а горит в полсилы.
+</p>
+
+<p>
+Аналогично, разогнанный мотор не может остановить вал за
+миллисекунды, поэтому ШИМ-сигнал заставит вращаться его
+в неполную силу.
+</p>
+
+</div>
+
+<h2 class="sectionedit3">Скважность</h2>
+<div class="level2">
+
+<p>
+
+Отношение времени включения и выключения называют <em>скважностью</em> (англ. duty cycle).
+Рассмотрим несколько сценариев при напряжении питания <em>Vcc</em> равным 5 вольтам.
+</p>
+
+</div>
+
+<h3 class="sectionedit4">50% — эквивалент 2,5 В</h3>
+<div class="level3">
+
+<p>
+
+<img src="images/pwm2.png" class="mediacenter" alt="" />
+</p>
+
+</div>
+
+<h3 class="sectionedit5">10% — эквивалент 0,5 В</h3>
+<div class="level3">
+
+<p>
+
+<img src="images/pwm3.png" class="mediacenter" alt="" />
+</p>
+
+</div>
+
+<h3 class="sectionedit6">90% — эквивалент 4,5 В</h3>
+<div class="level3">
+
+<p>
+
+<img src="images/pwm4.png" class="mediacenter" alt="" />
+</p>
+
+</div>
+        </div>
+      </div>
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../jquery.min.js"></script>
+    <script src="../bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<!--    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>-->
+  </body>
+</html>

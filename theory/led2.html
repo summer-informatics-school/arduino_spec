@@ -1,0 +1,141 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SIS - Arduino - Светодиодные сборки</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../custom.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <!-- Static navbar -->
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <img src="http://10.0.0.2/mail/logo.png" height="50px;" class="navbar-logo"/>
+            <div class="navbar-brand">Arduino club</div>
+          </div>
+        </div><!--/.container-fluid -->
+      </nav>
+
+    <ol class="breadcrumb">
+      <li><a href="../index.html">Главная</a></li>
+      <li class="active">Светодиодные сборки</li>
+    </ol>
+
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <div class="row">
+<h2 class="sectionedit1"><a name="светодиодные_сборки" id="светодиодные_сборки">Светодиодные сборки</a></h2>
+<div class="level1">
+
+<p>
+
+Многие компоненты, используемые для индикации, представляют
+собой несколько отдельных светодиодов в одном корпусе.
+</p>
+
+</div>
+
+<h2 class="sectionedit2">Светодиодная шкала</h2>
+<div class="level2">
+
+<p>
+
+Светодиодная шкала — это десяток отдельных светодиодов,
+каждый со своим анодом и катодом.
+</p>
+
+<p>
+<img src="images/led2_1.png" class="mediacenter" alt="" />
+</p>
+
+</div>
+
+<h2 class="sectionedit3"><a name="семисегментный_индикатор" id="семисегментный_индикатор">Семисегментный индикатор</a></h2>
+<div class="level2">
+
+<p>
+
+Семисегментный индикатор — это восемь светодиодов в одном
+корпусе: 7 сегментов + точка. Анод у каждого светодиода отдельный,
+а катод у всех общий, на ноге 3 или 8.
+</p>
+
+<p>
+<img src="images/led2_2.png" class="mediacenter" alt="" />
+</p>
+
+<p>
+<img src="images/led2_3.png" class="mediacenter" alt="" />
+</p>
+
+</div>
+
+<h2 class="sectionedit4">Установка на макетную плату</h2>
+<div class="level2">
+
+<p>
+
+Для подключения на breadboard’е используйте канавку
+в центре, чтобы не замкнуть ноги на противоположных сторонах.
+</p>
+
+<p>
+<img src="images/led2_4.png" class="mediacenter" alt="" />
+</p>
+
+</div>
+
+<h2 class="sectionedit5">Токоограничивающие резисторы</h2>
+<div class="level2">
+
+<p>
+
+Используйте <em>отдельный</em> резистор для каждого светодиода, иначе
+при разном количестве включенных сегментов их яркость будет «скакать».
+</p>
+
+<p>
+Даже в случае, когда все светодиоды включаются и выключаются синхронно,
+лучше придерживаться этого правила. Светодиоды могут чуть отличаться своей
+вольт-амперной характеристикой друг от друга. Первый открывшийся пропустит
+через себя ток, предназначенный для всех. Из-за чего он может выйти из строя
+и «эстафета» перейдёт к следующему.
+</p>
+
+<p>
+<img src="images/led2_5.png" class="mediacenter" alt="" />
+</p>
+
+</div>
+        </div>
+      </div>
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../jquery.min.js"></script>
+    <script src="../bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<!--    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>-->
+  </body>
+</html>

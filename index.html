@@ -1,0 +1,128 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SIS - Arduino</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="custom.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <!-- Static navbar -->
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <img src="http://10.0.0.2/mail/logo.png" height="50px;" class="navbar-logo"/>
+            <div class="navbar-brand">Arduino club</div>
+          </div>
+        </div><!--/.container-fluid -->
+      </nav>
+
+    <ol class="breadcrumb">
+      <li class="active">Главная</li>
+    </ol>
+
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <div class="row">
+        <div class="col-md-6">
+            <h3>Теоретические материалы</h3>
+            <h4>Электричество</h4>
+            <div class="list-group">
+                <a class="list-group-item list-group-item-begin" href="theory/electro.html">Понятие электричества</a>
+                <a class="list-group-item list-group-item-begin" href="theory/zakoni.html">Основные законы электричества</a>
+                <a class="list-group-item list-group-item-begin" href="theory/control.html">Управление электричеством</a>
+                <a class="list-group-item list-group-item-begin" href="theory/divide.html">Делитель напряжения</a>
+            </div>
+            <h4>Arduino</h4>
+            <div class="list-group">
+                <a class="list-group-item list-group-item-begin" href="theory/fast.html">Быстрая сборка схем</a>
+                <a class="list-group-item list-group-item-begin" href="theory/begin.html">Начало работы с Arduino</a>
+                <a class="list-group-item list-group-item-begin" href="theory/cpp_structure.html">
+                    Структура программы на языке C++ для Arduino
+                </a>
+            </div>
+            <h4>Сигналы, интерфейсы, протоколы</h4>
+            <div class="list-group">
+                <a class="list-group-item list-group-item-begin" href="theory/analog.html">Аналоговый сигнал</a>
+                <a class="list-group-item list-group-item-begin" href="theory/digital.html">Цифровой сигнал</a>
+                <a class="list-group-item list-group-item-begin" href="theory/pwm.html">
+                    Широтно-импульсная модуляция (ШИМ, PWM)
+                </a>
+            </div>
+            <h4>Компоненты</h4>
+            <div class="list-group">
+                <a class="list-group-item list-group-item-begin" href="theory/resistor.html">Резистор</a>
+                <a class="list-group-item list-group-item-begin" href="theory/led.html">Светодиод</a>
+                <a class="list-group-item list-group-item-easy" href="theory/button.html">Кнопка</a>
+                <a class="list-group-item list-group-item-easy" href="theory/hcsr04.html">Ультразвуковой сенсор (HC-SR04)</a>
+                <a class="list-group-item list-group-item-easy">Пьезопищалка</a>
+                <a class="list-group-item list-group-item-easy">Датчик температуры</a>
+                <a class="list-group-item list-group-item-medium" href="theory/led2.html">Светодиодные сборки</a>
+                <a class="list-group-item list-group-item-medium" href="theory/transistor.html">Биполярный транзистор</a>
+                <a class="list-group-item list-group-item-hard" href="theory/register.html">Выходной сдвиговый регистр 74HC595</a>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <h3>Эксперименты</h3>
+            <h4>Базовый уровень</h4>
+            <div class="list-group">
+                <a href="tasks/basic1.html" class="list-group-item list-group-item-begin">Маячок</a>
+                <a href="tasks/basic2.html" class="list-group-item list-group-item-begin">Маячок с нарастающей яркостью</a>
+                <a href="tasks/basic3.html" class="list-group-item list-group-item-begin">Маячок с плавной яркостью</a>
+                <a href="tasks/basic4.html" class="list-group-item list-group-item-begin">Маячок с управляемой яркостью</a>
+                <a href="tasks/basic5.html" class="list-group-item list-group-item-begin">Два маячка в противофазе</a>
+            </div>
+            <h4>Начальный уровень</h4>
+            <div class="list-group">
+                <!--<a class="list-group-item list-group-item-easy">Датчик освещенности</a>-->
+                <a class="list-group-item list-group-item-easy" href="tasks/easy2.html">Кнопочный переключатель</a>
+                <a class="list-group-item list-group-item-easy" href="tasks/easy3.html">Светильник с кнопочным управлением</a>
+                <a class="list-group-item list-group-item-easy" href="tasks/easy4.html">Светильник, управляемый по USB</a>
+                <a class="list-group-item list-group-item-easy" href="tasks/easy6.html">Датчик температуры</a>
+                <a class="list-group-item list-group-item-easy" href="tasks/easy7.html">Датчик расстояния</a>
+                <a class="list-group-item list-group-item-easy" href="tasks/easy5.html">Датчик расстояния с пищалкой</a>
+            </div>
+            <h4>Средний уровень</h4>
+            <div class="list-group">
+                <a class="list-group-item list-group-item-medium" href="tasks/medium1.html">Пульсар</a>
+                <a class="list-group-item list-group-item-medium" href="tasks/medium2.html">Бегущий огонек</a>
+                <a class="list-group-item list-group-item-medium" href="tasks/medium3.html">Трехцветный маячок с тремя кнопками</a>
+                <a class="list-group-item list-group-item-medium" href="tasks/medium4.html">Бегущий огонек с одной кнопкой</a>
+                <a class="list-group-item list-group-item-medium" href="tasks/medium5.html">Бегущий огонек с двумя кнопками</a>
+                <a class="list-group-item list-group-item-medium" href="tasks/medium6.html">Шкала с потенциометром</a>
+                <a class="list-group-item list-group-item-medium" href="tasks/medium7.html">Секундомер</a>
+                <a class="list-group-item list-group-item-medium" href="tasks/medium8.html">Счетчик нажатий</a>
+                <a class="list-group-item list-group-item-medium" href="tasks/medium9.html">Трехцветный маячок с тремя потенциометрами</a>
+            </div>
+        </div>
+        </div>
+      </div>
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="jquery.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<!--    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>-->
+  </body>
+</html>

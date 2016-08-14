@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SIS - Arduino - Бегущий огонёк</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../custom.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../monokai_sublime.css">
+    <script src="../highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <!-- Static navbar -->
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <img src="http://10.0.0.2/mail/logo.png" height="50px;" class="navbar-logo"/>
+            <div class="navbar-brand">Arduino club</div>
+          </div>
+        </div>
+      </nav>
+
+    <ol class="breadcrumb">
+      <li><a href="../index.html">Главная</a></li>
+      <li class="active">Эксперимент - Бегущий огонёк</li>
+    </ol>
+
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron">
+      <div class="row">
+        <h2>Бегущий огонёк</h2>
+        В этом эксперименте мы заставляем огонёк бежать по светодиодной шкале.
+      </div>
+      <div class="row">
+        <h3>Список деталей для эксперимента</h3>
+        <ul>
+            <li>1 светодиодная шкала</li>
+            <li>10 резисторов номиналом 220 Ом</li>
+            <li>11 проводов</li>
+        </ul>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+            <h3>Схема на макетке</h3>
+            <img width="100%" src="images/medium2_bb.png"/>
+        </div>
+        <div class="col-md-6">
+            <h3>Скетч</h3>
+            <pre>
+            <code class="c++">// светодиодная шкала подключена к группе пинов расположенных
+// подряд. Даём понятные имена первому и последнему пинам
+#define FIRST_LED_PIN  2
+#define LAST_LED_PIN   11
+ 
+void setup()
+{
+  // в шкале 10 светодиодов. Мы бы могли написать pinMode 10
+  // раз: для каждого из пинов, но это бы раздуло код и
+  // сделало его изменение более проблематичным.
+  // Поэтому лучше воспользоваться циклом. Мы выполняем
+  // pinMode для (англ. for) каждого пина (переменная pin)
+  // от первого (= FIRST_LED_PIN) до последнего включительно
+  // (<= LAST_LED_PIN), всякий раз продвигаясь к следующему
+  // (++pin увеличивает значение pin на единицу)
+  // Так все пины от 2-го по 11-й друг за другом станут выходами
+  for (int pin = FIRST_LED_PIN; pin <= LAST_LED_PIN; ++pin)
+    pinMode(pin, OUTPUT);
+}
+ 
+void loop()
+{
+  // получаем время в миллисекундах, прошедшее с момента
+  // включения микроконтроллера
+  unsigned int ms = millis();
+  // нехитрой арифметикой вычисляем, какой светодиод
+  // должен гореть именно сейчас. Смена будет происходить
+  // каждые 120 миллисекунд. Y % X — это остаток от
+  // деления Y на X; плюс, минус, скобки — как в алгебре.
+  int pin = FIRST_LED_PIN + (ms / 120) % 10;
+  // включаем нужный светодиод на 10 миллисекунд, затем —
+  // выключаем. На следующем проходе цикла он снова включится,
+  // если гореть его черёд, и мы вообще не заметим отключения
+  digitalWrite(pin, HIGH);
+  delay(10);
+  digitalWrite(pin, LOW);
+}            </code>
+            </pre>
+        </div>
+      </div>
+      <div class="row">
+        <h3>Обратите внимание</h3>
+<ul>
+<li class="level1"><div class="li"> Обратите внимание, что в данном эксперименте резисторы установлены между катодами и землей в отличие от эксперимента пульсар.</div>
+</li>
+<li class="level1"><div class="li"> Мы подключаем светодиоды к цифровым портам, начиная с порта 2. Мы можем использовать порты 0 и 1, но они являются каналами передачи данных последовательного порта и для каждой перепрошивки платы придется отключать устройства, подключенные к ним. </div>
+</li>
+</ul>
+      </div>
+      </div>
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../jquery.min.js"></script>
+    <script src="../bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<!--    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>-->
+  </body>
+</html>

@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SIS - Arduino - Два маячка в противофазе</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../custom.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../monokai_sublime.css">
+    <script src="../highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <!-- Static navbar -->
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <img src="http://10.0.0.2/mail/logo.png" height="50px;" class="navbar-logo"/>
+            <div class="navbar-brand">Arduino club</div>
+          </div>
+        </div>
+      </nav>
+
+    <ol class="breadcrumb">
+      <li><a href="../index.html">Главная</a></li>
+      <li class="active">Эксперимент - Два маячка в противофазе</li>
+    </ol>
+
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron">
+      <div class="row">
+        <h2>Два маячка в противофазе</h2>
+        В этом эксперименте мы меняем яркость светодиода, вращая ручку переменного резистора, а второй светодиод
+        должен светиться с противоположной яркостью.
+      </div>
+      <div class="row">
+        <h3>Список деталей для эксперимента</h3>
+        <ul>
+            <li>2 светодиод</li>
+            <li>2 резистор номиналом 220 Ом</li>
+            <li>8 проводов</li>
+            <li>1 потенциометр</li>
+        </ul>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+            <h3>Схема на макетке</h3>
+            <img width="100%" src="images/basic5_bb.png"/>
+        </div>
+        <div class="col-md-6">
+            <h3>Скетч</h3>
+            <pre>
+            <code class="c++">const int LED1_PIN = 9;
+const int LED2_PIN = 10;
+
+#define POT_PIN A0
+
+void setup() {
+  pinMode(LED1_PIN, OUTPUT);
+  pinMode(LED2_PIN, OUTPUT);
+  pinMode(POT_PIN, INPUT);
+}
+
+void loop() {
+  int rotation, brightness;
+  
+  rotation = analogRead(POT_PIN);
+
+  brightness = rotation / 4;
+
+  analogWrite(LED1_PIN, brightness);
+  analogWrite(LED2_PIN, 255 - brightness);
+}            </code>
+            </pre>
+        </div>
+      </div>
+      <div class="row">
+        <h3>Обратите внимание</h3>
+        <ul>
+          <li>Мы подключили «землю» светодиода и переменного резистора (потенциометра) к длинной рельсе «-» макетной платы, и уже ее соединили с входом GND микроконтроллера. Таким образом мы использовали меньше входов и от макетки к контроллеру тянется меньше проводов.</li>
+          <li>Подписи «+» и «-» на макетке не обязывают вас использовать их строго для питания, просто чаще всего они используются именно так и маркировка нам помогает</li>
+          <li>Не важно, какая из крайних ножек потенциометра будет подключена к 5 В, а какая к GND, поменяется только направление, в котором нужно крутить ручку для увеличения напряжения. Запомните, что сигнал мы считываем со средней ножки</li>          
+          <li>Для считывания аналогового сигнала, принимающего широкий спектр значений, а не просто 0 или 1, как цифровой, подходят только порты, помеченные на плате как «ANALOG IN» и пронумерованные с префиксом A. Для Arduino Uno — это A0-A5.</li>
+        </ul>
+      </div>
+      </div>
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../jquery.min.js"></script>
+    <script src="../bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<!--    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>-->
+  </body>
+</html>

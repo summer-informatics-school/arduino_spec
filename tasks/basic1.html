@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SIS - Arduino - Маячок</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../custom.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../monokai_sublime.css">
+    <script src="../highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <!-- Static navbar -->
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <img src="http://10.0.0.2/mail/logo.png" height="50px;" class="navbar-logo"/>
+            <div class="navbar-brand">Arduino club</div>
+          </div>
+        </div>
+      </nav>
+
+    <ol class="breadcrumb">
+      <li><a href="../index.html">Главная</a></li>
+      <li class="active">Эксперимент - Маячок</li>
+    </ol>
+
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron">
+      <div class="row">
+        <h2>Маячок</h2>
+        В этом эскперименте мы просто мигаем светодиодом.
+      </div>
+      <div class="row">
+        <h3>Список деталей для эксперимента</h3>
+        <ul>
+            <li>1 светодиод</li>
+            <li>1 резистор номиналом 220 Ом</li>
+            <li>2 провода</li>
+        </ul>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+            <h3>Схема на макетке</h3>
+            <img width="100%" src="images/basic1_bb.png"/>
+        </div>
+        <div class="col-md-6">
+            <h3>Скетч</h3>
+            <pre>
+            <code class="c++">void setup()
+{
+  // настраиваем пин №13 в режим выхода,
+  // т.е. в режим источника напряжения
+  pinMode(13, OUTPUT);
+}
+ 
+void loop()
+{
+  // подаём на пин 13 «высокий сигнал» (англ. «high»), т.е.
+  // выдаём 5 вольт. Через светодиод побежит ток.
+  // Это заставит его светиться
+  digitalWrite(13, HIGH);
+ 
+  // задерживаем (англ. «delay») микроконтроллер в этом
+  // состоянии на 100 миллисекунд
+  delay(100);
+ 
+  // подаём на пин 13 «низкий сигнал» (англ. «low»), т.е.
+  // выдаём 0 вольт или, точнее, 
+  // приравниваем пин 13 к земле.
+  // В результате светодиод погаснет
+  digitalWrite(13, LOW);
+ 
+  // замираем в этом состоянии на 900 миллисекунд
+  delay(900);
+ 
+  // после «размораживания» loop сразу же начнёт исполняться
+  // вновь, и со стороны это будет выглядеть так, будто
+  // светодиод мигает раз 
+  // в 100 мс + 900 мс = 1000 мс = 1 сек
+}            </code>
+            </pre>
+        </div>
+      </div>
+      <div class="row">
+        <h3>Обратите внимание</h3>
+        <ul>
+          <li>Катод (минус) светодиода - короткая ножка, именно её нужно соединять с землей (GND)</li>
+          <li>Не пренебрегайте резистором, иначе светодиод выйдет из строя</li>
+          <li>Плата Arduino имеет три пина GND, используйте любой из них</li>
+        </ul>
+      </div>
+      </div>
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../jquery.min.js"></script>
+    <script src="../bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<!--    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>-->
+  </body>
+</html>

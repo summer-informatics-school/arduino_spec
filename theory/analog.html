@@ -1,0 +1,158 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SIS - Arduino - Аналоговый сигнал</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../custom.css" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="../monokai_sublime.css">
+    <script src="../highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <!-- Static navbar -->
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <img src="http://10.0.0.2/mail/logo.png" height="50px;" class="navbar-logo"/>
+            <div class="navbar-brand">Arduino club</div>
+          </div>
+        </div><!--/.container-fluid -->
+      </nav>
+
+    <ol class="breadcrumb">
+      <li><a href="../index.html">Главная</a></li>
+      <li class="active">Аналоговый сигнал</li>
+    </ol>
+
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <div class="row">
+         <h2 class="sectionedit1">Сенсоры с аналоговым сигналом</h2>
+<div class="level1">
+
+<p>
+
+При использовании аналогового сигнала, показания датчика передаются в виде переменного напряжения на сигнальном проводе. Сигнальное напряжение может принимать значение от 0 В до напряжения питания. Хотя обычно «рабочий диапазон» напряжений более узкий.
+</p>
+
+<p>
+На Arduino Uno имеется 6 аналоговых входов с помощью которых можно считывать переменное напряжение, и исходя из его значения получать значения с датчика. Эти входы объединены на плате в группу «Analog In» и пронумерованы от A0 до A5.
+</p>
+
+</div>
+
+<h2 class="sectionedit2">Протокол</h2>
+<div class="level2">
+
+<p>
+
+Между измеряемой величиной и возвращаемым обратно напряжением установлена определённая зависимость. Например: чем больше величина, тем больше напряжение; или наоборот: чем больше величина, тем напряжение меньше. Иногда зависимость более сложная: напряжение растёт до определённого значения, затем падает пропорционально ему. Всё зависит от сенсора.
+</p>
+
+</div>
+
+<h2 class="sectionedit3">Программирование</h2>
+<div class="level2">
+
+<p>
+
+Считать данные с аналогового сенсора крайне просто. Для этого в Arduino существует стандартная функция <code>analogRead</code>. Так, например, если вы подключили сенсор к контакту A5, чтобы получить показания сенсора в переменную <code>value</code> достаточно исполнить:
+</p>
+<br>
+<pre><code class="c++">int value = analogRead(A5);</code></pre>
+
+<p>
+Таким образом, программа, которая раз в секунду считывает показания аналогового сенсора, подключенного к контакту А5, и посылает их на компьютер может выглядеть так:
+</p>
+<br>
+<pre>
+<code class="c++">#define SENSOR_PIN A5
+ 
+void setup()
+{
+    Serial.begin(9600);
+}
+ 
+void loop()
+{
+    delay(1000);
+    int val = analogRead(SENSOR_PIN);
+    Serial.println(val);
+}
+</code>
+</pre>
+
+</div>
+
+<h2 class="sectionedit4">Преимущества и недостатки аналогового сигнала</h2>
+<div class="level2">
+
+<p>
+
+Преимуществом сенсоров с аналоговым сигналом является крайняя простота их использования с Arduino. Кроме того, поскольку показания датчика можно считывать «из коробки» всего одной командой, драгоценные килобайты памяти на микроконтроллере не расходуются на хранение алгоритма расшифровки протокола, присущего цифровым сенсорам.
+</p>
+
+<p>
+Главным недостатком аналогового сигнала является неустойчивость к внешним шумам. Если провод от сенсора до микроконтроллера будет достаточно длинным, он начнёт работать как антенна и улавливать внешние электромагнитные поля: провод сам будет влиять на выходное напряжение и тем самым искажать показания. Поэтому разумный предел длины провода для аналогового сенсора — не более 50 см.
+</p>
+
+<p>
+Чтобы уменьшить влияние помех на полезный сигнал можно воспользоваться усреднением. Так как помехи носят случайный характер, они будут влиять на полезный сигнал тем меньше, чем больше выборок используется для усреднения.
+С усреднением наш пример будет выглядеть так:
+
+</p>
+<br>
+<pre>
+<code class="c++">#define SENSOR_PIN A5
+ 
+void setup()
+{
+    Serial.begin(9600);
+}
+ 
+void loop()
+{
+    delay(1000);
+    int val = analogRead(SENSOR_PIN);
+    Serial.println(val);
+}
+</code>
+</pre>
+
+<p>
+Аналоговый сигнал при чтении на Arduino может иметь максимум 1024 градации. С учётом того, что рабочий диапазон почти всегда уже допустимого, полезных градаций ещё меньше. Этого может оказаться недостаточно для высокоточных измерений.
+</p>
+        </div>
+      </div>
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../jquery.min.js"></script>
+    <script src="../bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<!--    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>-->
+  </body>
+</html>

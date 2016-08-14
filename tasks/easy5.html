@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SIS - Arduino - Датчик расстояния с пищалкой</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../custom.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../monokai_sublime.css">
+    <script src="../highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <!-- Static navbar -->
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <img src="http://10.0.0.2/mail/logo.png" height="50px;" class="navbar-logo"/>
+            <div class="navbar-brand">Arduino club</div>
+          </div>
+        </div>
+      </nav>
+
+    <ol class="breadcrumb">
+      <li><a href="../index.html">Главная</a></li>
+      <li class="active">Эксперимент - Датчик расстояния с пищалкой</li>
+    </ol>
+
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron">
+      <div class="row">
+        <h2>Датчик расстояния с пищалкой</h2>
+        В этом эксперименте мы делаем считываем данные с датчика расстояния и "пищим" в зависимости от того как близко находится объект.
+      </div>
+      <div class="row">
+        <h3>Список деталей для эксперимента</h3>
+        <ul>
+            <li>1 ультразвуковой сенсор</li>
+            <li>1 пьезопищалка</li>
+            <li>7 проводов</li>
+        </ul>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+            <h3>Схема на макетке</h3>
+            <img width="100%" src="images/easy5_bb.png"/>
+        </div>
+        <div class="col-md-6">
+            <h3>Скетч</h3>
+            <pre>
+            <code class="c++">int buzzer = 7 ;// setting controls the digital IO foot buzzer
+int echoPin = 9; 
+int trigPin = 8;
+
+void setup ()
+{
+  pinMode (buzzer, OUTPUT) ;// set the digital IO pin mode, OUTPUT out of Wen
+  Serial.begin (9600); 
+  pinMode(trigPin, OUTPUT); 
+  pinMode(echoPin, INPUT); 
+}
+void loop ()
+{
+  int duration, cm; 
+  digitalWrite(trigPin, LOW); 
+  delayMicroseconds(2); 
+  digitalWrite(trigPin, HIGH); 
+  delayMicroseconds(10); 
+  digitalWrite(trigPin, LOW); 
+  duration = pulseIn(echoPin, HIGH); 
+  cm = duration / 58;
+  Serial.print(cm); 
+  Serial.println(" cm"); 
+  delay(100);
+
+  if (cm < 0) cm = 0;
+  int wait = map(cm, 0, 300, 1, 100);
+  digitalWrite (buzzer, HIGH) ;// send voice
+  delay (wait) ;// Delay 1ms
+  digitalWrite (buzzer, LOW) ;// do not send voice
+}            </code>
+            </pre>
+        </div>
+      </div>
+      <div class="row">
+        <h3>Обратите внимание</h3>
+        <ul>
+<li class="level1"><div class="li">Ультразвокой сенсор имеет довольно сложный интерфейс для работы. Рекомендуются прочитать инструкцию прежде чем приступить к работе.</div>
+</li>
+<li class="level1"><div class="li">Тоже самое касается "Пассивного буззера"</div>
+</li>
+        </ul>
+      </div>
+      </div>
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../jquery.min.js"></script>
+    <script src="../bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<!--    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>-->
+  </body>
+</html>

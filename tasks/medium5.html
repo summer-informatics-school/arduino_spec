@@ -1,0 +1,127 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SIS - Arduino - Бегущий огонёк с двумя кнопками</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../custom.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../monokai_sublime.css">
+    <script src="../highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <!-- Static navbar -->
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <img src="http://10.0.0.2/mail/logo.png" height="50px;" class="navbar-logo"/>
+            <div class="navbar-brand">Arduino club</div>
+          </div>
+        </div>
+      </nav>
+
+    <ol class="breadcrumb">
+      <li><a href="../index.html">Главная</a></li>
+      <li class="active">Эксперимент - Бегущий огонёк с двумя кнопками</li>
+    </ol>
+
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron">
+      <div class="row">
+        <h2>Бегущий огонёк с двумя кнопками</h2>
+        В этом эксперименте мы управляем светодиодной шкалой с помощью двух кнопок.
+      </div>
+      <div class="row">
+        <h3>Список деталей для эксперимента</h3>
+        <ul>
+            <li>1 светодиодная шкала</li>
+            <li>2 тактовые кнопки</li>
+            <li>10 резисторов номиналом 220 Ом</li>
+            <li>15 проводов</li>
+        </ul>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+            <h3>Схема на макетке</h3>
+            <img width="100%" src="images/medium5_bb.png"/>
+        </div>
+        <div class="col-md-6">
+            <h3>Скетч</h3>
+            <pre>
+            <code class="c++">#define FIRST_LED_PIN 2
+#define LAST_LED_PIN 11
+#define INC_BUTTON_PIN 13
+#define DEC_BUTTON_PIN 12
+
+boolean incButtonUp = true;
+boolean decButtonUp = true;
+int pos = 0;
+
+void setup()
+{
+  for (int pin = FIRST_LED_PIN; pin <= LAST_LED_PIN; ++pin)
+    pinMode(pin, OUTPUT);
+  pinMode(INC_BUTTON_PIN, INPUT_PULLUP);
+  pinMode(DEC_BUTTON_PIN, INPUT_PULLUP);
+}
+ 
+void loop()
+{
+  for (int pin = FIRST_LED_PIN; pin <= LAST_LED_PIN; ++pin)
+    digitalWrite(pin, LOW);
+  digitalWrite(FIRST_LED_PIN + pos, HIGH);
+  
+
+  incButtonUp = handleClick(INC_BUTTON_PIN, incButtonUp, +1, pos);
+  decButtonUp = handleClick(DEC_BUTTON_PIN, decButtonUp, -1, pos);
+}
+
+boolean handleClick(int buttonPin, boolean wasUp, int delta, int & pos)
+{
+  boolean isUp = digitalRead(buttonPin);
+  if (wasUp && !isUp) {
+    delay(10);
+    isUp = digitalRead(buttonPin);
+    // если был клик, меняем яркость в пределах от 0 до 255
+    if (!isUp)    
+      pos = constrain(pos + delta, 0, 9);
+  }
+  return isUp; // возвращаем значение обратно, в вызывающий код
+}           </code>
+            </pre>
+        </div>
+      </div>
+      <div class="row">
+        <h3>Обратите внимание</h3>
+      </div>
+      </div>
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../jquery.min.js"></script>
+    <script src="../bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<!--    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>-->
+  </body>
+</html>

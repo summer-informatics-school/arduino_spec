@@ -1,0 +1,154 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SIS - Arduino - Светильник, управлемый по USB</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../custom.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../monokai_sublime.css">
+    <script src="../highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <!-- Static navbar -->
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <img src="http://10.0.0.2/mail/logo.png" height="50px;" class="navbar-logo"/>
+            <div class="navbar-brand">Arduino club</div>
+          </div>
+        </div>
+      </nav>
+
+    <ol class="breadcrumb">
+      <li><a href="../index.html">Главная</a></li>
+      <li class="active">Эксперимент - Светильник, управлемый по USB</li>
+    </ol>
+
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron">
+      <div class="row">
+        <h2>Светильник, управлемый по USB</h2>
+        В этом эксперименте мы отправляем устройству команды, как ему светить.
+      </div>
+      <div class="row">
+        <h3>Список деталей для эксперимента</h3>
+        <ul>
+            <li>1 светодиод</li>
+            <li>1 резистор номиналом 220 Ом</li>
+            <li>2 провода</li>
+        </ul>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+            <h3>Схема на макетке</h3>
+            <img width="100%" src="images/easy4_bb.png"/>
+        </div>
+        <div class="col-md-6">
+            <h3>Скетч</h3>
+            <pre>
+            <code class="c++">#define LED_PIN 9
+// для работы с текстом существуют объекты-строки (англ. string)
+String message;
+ 
+void setup()
+{
+  pinMode(LED_PIN, OUTPUT);
+  Serial.begin(9600);
+}
+ 
+void loop()
+{
+  // передаваемые с компьютера данные поставляются байт за
+  // байтом, в виде отдельных символов (англ. character). Нам
+  // нужно последовательно их обрабатывать пока (англ. while)
+  // в порту доступны (англ. available) новые данные
+  while (Serial.available()) {  
+    // считываем (англ. read) пришедший символ в переменную
+    char incomingChar = Serial.read();
+    // не стоит путать целые числа и символы. Они соотносятся
+    // друг с другом по таблице, называемой кодировкой. Например
+    // '0' — это 48, '9' — 57, 'A' — 65, 'B' — 66 и т.п. Символы
+    // в программе записываются в одинарных кавычках
+    if (incomingChar >= '0' && incomingChar <= '9') {
+      // если пришёл символ-цифра, добавляем его к сообщению
+      message += incomingChar;
+    } else if (incomingChar == '\n') {
+      // если пришёл символ новой строки, т.е. enter, переводим
+      // накопленное сообщение в целое число (англ. to integer).
+      // Так последовательность символов '1', '2', '3' станет
+      // числом 123. Результат выводим на светодиод
+      analogWrite(LED_PIN, message.toInt());
+      // обнуляем накопленное сообщение, чтобы начать всё заново
+      message = "";
+    }
+  }
+  // посылайте сообщения-числа с компьютера через Serial Monitor
+}            </code>
+            </pre>
+        </div>
+      </div>
+      <div class="row">
+        <h3>Пояснение к коду</h3>
+<ul>
+<li class="level1"><div class="li"> В этой программе мы создаем объект класса <code>String</code>. Это встроенный класс, предназначенный для работы со строками, т.е. с текстом.</div>
+</li>
+<li class="level1"><div class="li"> Не путайте его с типом данных <code>string</code>, который является просто массивом символов. <code>String</code> же позволяет использовать ряд методов для удобной работы со строками.</div>
+</li>
+<li class="level1"><div class="li"> Мы знакомимся с новым видом циклов: цикл с условием <code>while</code>. В отличие от цикла со счетчиком <code>for</code>, цикл <code>while(expression)</code> выполняется до тех пор, пока логическое выражение <code>expression</code> истинно.</div>
+</li>
+<li class="level1"><div class="li"> Метод <code>available()</code> объекта <code>Serial</code> возвращает количество байт, полученных через последовательный порт.</div>
+</li>
+<li class="level1"><div class="li"> В данном эксперименте цикл <code>while</code> работает до тех пор, пока <code>available()</code> возвращает ненулевое значение, любое из которых приводится к <code>true</code>.</div>
+</li>
+<li class="level1"><div class="li"> Переменные типа <code>char</code> могут хранить один символ.</div>
+</li>
+<li class="level1"><div class="li"> В этом примере символ мы получаем методом <code>Serial.read()</code>, который возвращает первый байт, пришедший на последовательный порт, или -1, если ничего не пришло.</div>
+</li>
+<li class="level1"><div class="li"> Обратите внимание, что в <code>if</code> мы сравниваем не пришедший символ с 0 и 9, но их коды. Если пришел какой-то символ, который не является цифрой, мы не будем его добавлять к нашей строке <code>message</code>.</div>
+</li>
+<li class="level1"><div class="li"> Объекты типа <code>String</code> позволяют производить конкатенацию, т.е. объединение строк. Это можно сделать так: <code>message = message + incomingChar</code>, но можно записать в сокращенной форме: <code>message += incomingChar</code>.</div>
+</li>
+<li class="level1"><div class="li"> В этой программе мы дополняем <code>if</code> конструкцией <code>else if</code>. Это еще один условный оператор, который проверяется только в случае ложности выражения, данного первому оператору. Несколько <code>else if</code> могут следовать друг за другом, при этом каждое следующее условие будет проверяться только в случае невыполнения всех предыдущих. Если в конце разместить <code>else</code>, он выполнится только если ни одно из условий не выполнено.</div>
+</li>
+<li class="level1"><div class="li"> Напомним, что последовательностью <code>\n</code> кодируется символ переноса строки. Если он был передан устройству, мы передаем полученные ранее символы как параметр для <code>analogWrite()</code>, которая включает светодиод.</div>
+</li>
+<li class="level1"><div class="li"> Мы используем один из методов <code>String</code>, <code>toInt()</code>, который заставляет считать строку не набором цифр, но числом. Он возвращает значение типа <code>long</code>, при этом, если строка начинается с символа, не являющегося цифрой, будет возвращен 0. Если после цифр, идущих в начале строки, будут символы не-цифры, на них конверсия остновится.</div>
+</li>
+<li class="level1"><div class="li"> Обратите внимание на выпадающее меню внизу монитора порта: чтобы наше устройство получало символ перевода строки, там должно быть выбрано «Новая строка (NL)» </div>
+</li>
+<li class="level1"><div class="li"> Пустая строка обозначается так: <code>&quot;&quot;</code>. Опустошив ее, мы готовы собирать новую последовательность символов.</div>
+</li>
+</ul>
+      </div>
+      </div>
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../jquery.min.js"></script>
+    <script src="../bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<!--    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>-->
+  </body>
+</html>

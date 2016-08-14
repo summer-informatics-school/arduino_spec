@@ -1,0 +1,200 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SIS - Arduino - Светодиод</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../custom.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <!-- Static navbar -->
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <img src="http://10.0.0.2/mail/logo.png" height="50px;" class="navbar-logo"/>
+            <div class="navbar-brand">Arduino club</div>
+          </div>
+        </div><!--/.container-fluid -->
+      </nav>
+
+    <ol class="breadcrumb">
+      <li><a href="../index.html">Главная</a></li>
+      <li class="active">Светодиод</li>
+    </ol>
+
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <div class="row">
+<h2 class="sectionedit1">Светодиод</h2>
+<div class="level1">
+
+<p>
+Светодиод (англ. Light Emitting Diode или просто LED) —
+энергоэффективная, надёжная, долговечная «лампочка»
+</p>
+
+<p>
+Светодиод — вид диода, который светится, когда через
+него проходит ток от анода (+) к катоду (−).
+</p>
+
+<p>
+<img src="images/led1.png" class="mediacenter" alt="" />
+</p>
+
+</div>
+
+<h2 class="sectionedit2">Основные характеристики</h2>
+<div class="level2">
+<div class="table sectionedit3"><table class="table table-bordered" style="width: 30%">
+  <tr class="row0">
+    <td class="col0 leftalign">Падение напряжения  </td><td class="col1 centeralign">  <em>V<sub>F</sub></em>  </td><td class="col2 leftalign">Вольт  </td>
+  </tr>
+  <tr class="row1">
+    <td class="col0 leftalign">Номинальный ток  </td><td class="col1 centeralign">  <em>I</em>  </td><td class="col2 leftalign">Ампер  </td>
+  </tr>
+  <tr class="row2">
+    <td class="col0 leftalign">Интенсивность (яркость)  </td><td class="col1 centeralign">  <em>I<sub>V</sub></em>  </td><td class="col2 leftalign">Кандела  </td>
+  </tr>
+  <tr class="row3">
+    <td class="col0 leftalign">Длина волны (цвет)  </td><td class="col1 centeralign">  <em>λ</em>  </td><td class="col2 leftalign">Нанометр  </td>
+  </tr>
+</table></div>
+
+</div>
+
+<h2 class="sectionedit4">Восприятие световых волн человеком</h2>
+<div class="level2">
+
+<p>
+
+<img src="images/led2.png" class="mediacenter" alt="" />
+</p>
+
+</div>
+
+<h2 class="sectionedit5">Типовая схема включения</h2>
+<div class="level2">
+
+<p>
+
+<img src="images/led3.png" class="mediacenter" alt="" />
+</p>
+
+<p>
+Собственное сопротивление светодиода после насыщения очень мало, и без резистора,
+ограничивающего ток через светодиод, он перегорит
+</p>
+
+<p>
+Порядок: «резистор до» или «резистор после» — не важен
+</p>
+
+</div>
+
+<h2 class="sectionedit6">Поиск подходящего резистора</h2>
+<div class="level2">
+
+<p>
+
+Рассчитаем какой резистор <em>R</em> в приведённой схеме нам нужно взять, чтобы получить
+оптимальный результат. Предположим, что у нас такой светодиод и источник питания:
+</p>
+
+<p>
+<img src="images/led4.png" />
+</p>
+
+<p>
+Найдём оптимальное сопротивление <em>R</em> и минимально допустимую
+мощность резистора <em>P<sub>R</sub></em>.
+</p>
+
+<p>
+Сначала поймём какое напряжение должен взять на себя резистор:
+</p>
+
+<p>
+<img src="images/led5.png" />
+</p>
+
+<p>
+По закону Ома найдём значение сопротивления, которое обеспечит такое падение:
+</p>
+
+<p>
+<img src="images/led6.png" />
+</p>
+
+<p>
+Таким образом:
+
+</p>
+<ul>
+<li class="level1"><div class="li"> при сопротивлении более 135 Ом яркость будет ниже заявленной</div>
+</li>
+<li class="level1"><div class="li"> при сопротивлении менее 135 Ом срок жизни светодиода будет меньше</div>
+</li>
+</ul>
+
+<p>
+
+Теперь найдём мощность, которую при этом резистору придётся рассеивать:
+</p>
+
+<p>
+<img src="images/led7.png" />
+</p>
+
+<p>
+Это означает, что при мощности резистора менее 54 мВт резистор перегорит.
+
+</p>
+
+</div>
+
+<h3 class="sectionedit7">Простое правило</h3>
+<div class="level3">
+
+<p>
+
+Чтобы не заниматься расчётами резистора каждый раз во время проведения
+экспериментов, можно просто запомнить правило для самого типичного сценария.
+</p>
+
+<p>
+Для питания 1 светодиода на 20 мА от 5 В используйте резистор от 150 до 360 Ом.
+</p>
+
+</div>
+        </div>
+      </div>
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../jquery.min.js"></script>
+    <script src="../bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<!--    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>-->
+  </body>
+</html>

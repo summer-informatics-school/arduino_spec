@@ -1,0 +1,162 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SIS - Arduino - Кнопочный переключатель</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../custom.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../monokai_sublime.css">
+    <script src="../highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <!-- Static navbar -->
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <img src="http://10.0.0.2/mail/logo.png" height="50px;" class="navbar-logo"/>
+            <div class="navbar-brand">Arduino club</div>
+          </div>
+        </div>
+      </nav>
+
+    <ol class="breadcrumb">
+      <li><a href="../index.html">Главная</a></li>
+      <li class="active">Эксперимент - Кнопочный переключатель</li>
+    </ol>
+
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron">
+      <div class="row">
+        <h2>Кнопочный переключатель</h2>
+        В этом эксперименте мы делаем из тактовой кнопки триггер, борясь с «дребезгом».
+      </div>
+      <div class="row">
+        <h3>Список деталей для эксперимента</h3>
+        <ul>
+            <li>1 тактовая кнопка</li>
+            <li>1 светодиод</li>
+            <li>1 резистор номиналом 220 Ом</li>
+            <li>5 провода</li>
+        </ul>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+            <h3>Схема на макетке</h3>
+            <img width="100%" src="images/easy2_bb.png"/>
+        </div>
+        <div class="col-md-6">
+            <h3>Скетч</h3>
+            <pre>
+            <code class="c++">#define BUTTON_PIN  3
+#define LED_PIN     13
+ 
+boolean buttonWasUp = true;  // была ли кнопка отпущена?
+boolean ledEnabled = false;  // включен ли свет?
+ 
+void setup()
+{
+  pinMode(LED_PIN, OUTPUT);
+  pinMode(BUTTON_PIN, INPUT_PULLUP);
+}
+ 
+void loop()
+{
+  // определить момент «клика» несколько сложнее, чем факт того,
+  // что кнопка сейчас просто нажата. Для определения клика мы
+  // сначала понимаем, отпущена ли кнопка прямо сейчас...
+  boolean buttonIsUp = digitalRead(BUTTON_PIN);
+ 
+  // ...если «кнопка была отпущена и (&&) не отпущена сейчас»...
+  if (buttonWasUp && !buttonIsUp) {
+    // ...может это «клик», а может и ложный сигнал (дребезг),
+    // возникающий в момент замыкания/размыкания пластин кнопки,
+    // поэтому даём кнопке полностью «успокоиться»...
+    delay(10);
+    // ...и считываем сигнал снова
+    buttonIsUp = digitalRead(BUTTON_PIN);
+    if (!buttonIsUp) {  // если она всё ещё нажата...
+      // ...это клик! Переворачиваем сигнал светодиода
+      ledEnabled = !ledEnabled;
+      digitalWrite(LED_PIN, ledEnabled);
+    }
+  }
+ 
+  // запоминаем последнее состояние кнопки для новой итерации
+  buttonWasUp = buttonIsUp;
+}            </code>
+            </pre>
+        </div>
+      </div>
+      <div class="row">
+        <h3>Обратите внимание</h3>
+        <ul>
+<li class="level1"><div class="li"> Мы могли бы один из контактов кнопки соединить проводом напрямую с одним из входов GND, но мы сначала «раздали» «землю» на длинную рельсу макетки. Если мы работаем с макетной платой, так поступать удобнее, т.к. в схеме могут появляться новые участки, которые тоже нужно будет соединить с «землей»</div>
+</li>
+<li class="level1"><div class="li"> Поскольку мы сконфигурировали вход кнопки как <code>INPUT_PULLUP</code>, при нажатии на кнопку на данном входе мы будем получать 0. Поэтому мы получим значение <code>true</code> («истина») в булевой переменной <code>buttonIsUp</code> («кнопка отпущена»), когда кнопка отпущена.</div>
+</li>
+<li class="level1"><div class="li"> Логический оператор <code>&amp;&amp;</code> («и») возвращает значение «истина» только в случае истинности обоих его операндов. Взглянем на так называемую таблицу истинности для выражения <code>buttonWasUp &amp;&amp; !buttonIsUp</code> («кнопка была отпущена и кнопка не отпущена»):</div>
+</li>
+</ul>
+<div class="table sectionedit9"><table class="table table-bordered">
+  <tr class="row0">
+    <td class="col0 centeralign">  <code>buttonWasUp</code>  </td><td class="col1 centeralign">  <code>buttonIsUp</code>  </td><td class="col2 centeralign">  <code>!buttonIsUp</code>  </td><td class="col3 centeralign">  <code>buttonWasUp &amp;&amp; !buttonIsUp</code>  </td>
+  </tr>
+  <tr class="row1">
+    <td class="col0 centeralign">  0  </td><td class="col1 centeralign">  0  </td><td class="col2 centeralign">  1  </td><td class="col3 centeralign">  0  </td>
+  </tr>
+  <tr class="row2">
+    <td class="col0 centeralign">  0  </td><td class="col1 centeralign">  1  </td><td class="col2 centeralign">  0  </td><td class="col3 centeralign">  0  </td>
+  </tr>
+  <tr class="row3">
+    <td class="col0 centeralign">  1  </td><td class="col1 centeralign">  0  </td><td class="col2 centeralign">  1  </td><td class="col3 centeralign">  1  </td>
+  </tr>
+  <tr class="row4">
+    <td class="col0 centeralign">  1  </td><td class="col1 centeralign">  1  </td><td class="col2 centeralign">  0  </td><td class="col3 centeralign">  0  </td>
+  </tr>
+</table></div>
+
+<p>
+
+Здесь рассмотрены все возможные сочетания предыдущего и текущего состояний кнопки и мы видим, что наш условный оператор <code>if</code> сработает только в случае, когда кнопка нажата только что: предыдущее состояние 1 («была отпущена»), а текущее 0 («не отпущена»).
+</p>
+<ul>
+<li class="level1"><div class="li"> Через 10 миллисекунд мы проверяем еще раз, нажата ли кнопка: этот интервал больше, чем длительность «дребезга», но меньше, чем время, за которое человек успел бы дважды нажать на кнопку. Если кнопка всё еще нажата, значит, это был не дребезг.</div>
+</li>
+<li class="level1"><div class="li"> Мы передаем в <code>digitalWrite</code> не конкретное значение <code>HIGH</code> или <code>LOW</code>, а просто булеву переменную <code>ledEnabled</code>. В зависимости от того, какое значение было для нее вычислено, светодиод будет зажигаться или гаситься.</div>
+</li>
+<li class="level1"><div class="li"> Последняя инструкция в <code>buttonWasUp = buttonIsUp</code> сохраняет текущее состояние кнопки в переменную предыдущего состояния, ведь на следующей итерации <code>loop</code> текущее состояние уже станет историей.</div>
+</li>
+        </ul>
+      </div>
+      </div>
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../jquery.min.js"></script>
+    <script src="../bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<!--    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>-->
+  </body>
+</html>

@@ -1,0 +1,176 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SIS - Arduino - Делитель напряжения</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../custom.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <!-- Static navbar -->
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <img src="http://10.0.0.2/mail/logo.png" height="50px;" class="navbar-logo"/>
+            <div class="navbar-brand">Arduino club</div>
+          </div>
+        </div><!--/.container-fluid -->
+      </nav>
+
+    <ol class="breadcrumb">
+      <li><a href="../index.html">Главная</a></li>
+      <li class="active">Делитель напряжения</li>
+    </ol>
+
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <div class="row">
+            Последовательно подключённые резисторы делят поступающее
+на них напряжение в определённой пропорции.
+</p>
+
+<p>
+<img src="images/divide1.png" class="mediacenter" alt="" />
+</p>
+
+
+<h2 class="sectionedit2">Расчёт пропорции</h2>
+<div class="level2">
+
+<p>
+
+Сила тока, протекающая через резисторы одинакова, т.к. они соединены последовательно, и
+по закону Ома может быть рассчитана как:
+</p>
+
+<p>
+<img src="images/divide2.png" title="LaTeX" />
+</p>
+
+<p>
+По тому же закону Ома можно вычислить напряжение <em>V<sub>out</sub></em>, которое падает
+на резисторе <em>R<sub>2</sub></em>:
+</p>
+
+<p>
+<img src="images/divide3.png"  />
+</p>
+
+<p>
+Из полученной формулы видно, что чем больше <em>R<sub>2</sub></em> относительно
+<em>R<sub>1</sub></em>, тем большее напряжение падает на нём.
+</p>
+
+</div>
+
+<h2 class="sectionedit3">Считывание резистивных сенсоров</h2>
+<div class="level2">
+
+<p>
+
+Если вмето <em>R<sub>2</sub></em> использовать не постоянный
+резистор, а датчик, который меняет
+своё сопротивленивление, <em>V<sub>out</sub></em> будет
+зависеть от измеряемого значения.
+</p>
+
+<p>
+<img src="images/divide4.png" class="mediacenter" alt="" />
+</p>
+
+<p>
+Микроконтроллер умеет измерять напряжение. Таким образом, мы можем использовать
+свойства делителя напряжения для получения показаний от сенсора.
+</p>
+
+</div>
+
+<h2 class="sectionedit4">Примеры резистивных датчиков</h2>
+<div class="level2">
+
+</div>
+
+<h3 class="sectionedit5">Термистор</h3>
+<div class="level3">
+
+<p>
+
+<img src="images/divide5.png" class="mediacenter" alt="" />
+</p>
+
+<p>
+Термистор изменяет своё
+сопротивление в зависимости
+от собственной температуры
+</p>
+
+</div>
+
+<h3 class="sectionedit6">Фоторезистор</a></h3>
+<div class="level3">
+
+<p>
+
+<img src="images/divide6.png" class="mediacenter" alt="" />
+</p>
+
+<p>
+Фоторезистор (англ. Light Dependent Resistor или сокращённо LDR) изменяет своё
+сопротивление в зависимости
+от силы света, попадающего
+на его керамическую «змейку»
+</p>
+
+</div>
+
+<h3 class="sectionedit7">Потенциометр</h3>
+<div class="level3">
+
+<p>
+
+<img src="images/divide7.png" class="mediacenter" alt="" />
+</p>
+
+<p>
+Потенциометр ещё называют переменным резистором, триммером. Это делитель из двух
+резисторов в одном корпусе. Поэтому у него 3 ноги: питание, выход,
+земля.
+</p>
+
+<p>
+Соотношение <em>R<sub>1</sub></em> и <em>R<sub>2</sub></em> меняется поворотом ручки.
+От 100% в пользу <em>R<sub>1</sub></em> до 100% в пользу <em>R<sub>2</sub></em>.
+</p>
+
+</div>
+        </div>
+      </div>
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../jquery.min.js"></script>
+    <script src="../bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<!--    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>-->
+  </body>
+</html>

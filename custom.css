@@ -1,0 +1,81 @@
+.navbar {
+    background-color: #00979c;
+    border: 0px;
+    border-radius: 0px;
+}
+.navbar-default .navbar-brand {
+    color: #ffffff;
+}
+.navbar-default .navbar-nav > li > a {
+    color: #ffffff;
+}
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+    color: #ffffff;
+    background-color: #55979c;
+}
+
+.navbar-brand  {
+    color: #ffffff;
+    font-size: 30px;
+    padding-top: 20px;
+}
+
+.breadcrumb {
+    border-radius: 0px;
+}
+
+a {
+    color: #00979c;
+}
+
+.navbar-logo {
+    float: left;
+    margin-left: -10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 10px;
+}
+
+.container .jumbotron {
+    background-color: #ffffff;
+    padding-top: 0px;
+    border-radius: 0px;
+}
+
+pre {
+    background-color: #ffffff;
+    border: 0px;
+    padding: 0px;
+    margin-top: -20px;
+}
+
+.jumbotron p {
+    font-size: 14px;
+}
+
+.list-group-item:first-child {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
+
+.list-group-item:last-child {
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+.list-group-item-begin {
+    background-color: #99ff99;
+}
+.list-group-item-easy {
+    background-color: #ccff99;
+}
+.list-group-item-medium {
+    background-color: #ffff99;
+}
+.list-group-item-hard {
+    background-color: #ffcc66;
+}
+
+h1, h2, h3, h4 {
+    color: #00979c;
+}

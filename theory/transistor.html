@@ -1,0 +1,181 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SIS - Arduino - Биполярный транзистор</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../custom.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <!-- Static navbar -->
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <img src="http://10.0.0.2/mail/logo.png" height="50px;" class="navbar-logo"/>
+            <div class="navbar-brand">Arduino club</div>
+          </div>
+        </div><!--/.container-fluid -->
+      </nav>
+
+    <ol class="breadcrumb">
+      <li><a href="../index.html">Главная</a></li>
+      <li class="active">Биполярный транзистор</li>
+    </ol>
+
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <div class="row">
+ <h2 class="sectionedit1">Биполярный транзистор</h2>
+<div class="level1">
+
+<p>
+
+Транзистор — это электронная кнопка. На кнопку
+нажимают пальцем, а на биполярный транзистор — током.
+</p>
+
+<p>
+Транзисторы используют для управления мощными нагрузками
+при помощи слабых сигналов с микроконтроллера.
+</p>
+
+<p>
+<img src="images/transistor1.png" class="mediacenter" alt="" />
+
+</p>
+<ul>
+<li class="level1"><div class="li"> Нога, выполняющая роль «кнопки» называется <em>база</em> (англ. base)</div>
+</li>
+<li class="level1"><div class="li"> Пока через базу течёт небольшой ток, транзистор открыт:</div>
+<ul>
+<li class="level2"><div class="li"> Большой ток может втекать в <em>коллектор</em> (англ. collector)</div>
+</li>
+<li class="level2"><div class="li"> и вытекать из <em>эмиттера</em> (англ. emitter)</div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+
+<h2 class="sectionedit2">Основные характеристики</h2>
+<div class="level2">
+<div class="table sectionedit3"><table class="table table-bordered" style="width: 30%">
+  <tr class="row0">
+    <td class="col0 leftalign">Макс. напряжение коллектор-эмиттер  </td><td class="col1 centeralign">  <em>V<sub>CE</sub></em>  </td><td class="col2 leftalign">Вольт  </td>
+  </tr>
+  <tr class="row1">
+    <td class="col0 leftalign">Максимальный ток через коллектор  </td><td class="col1 centeralign">  <em>I<sub>C</sub></em>  </td><td class="col2 leftalign">Ампер  </td>
+  </tr>
+  <tr class="row2">
+    <td class="col0 leftalign">Коэффициент усиления  </td><td class="col1 centeralign">  <em>h<sub>fe</sub></em>  </td><td class="col2"> </td>
+  </tr>
+</table></div>
+
+</div>
+
+<h2 class="sectionedit4">Типовая схема подключения</h2>
+<div class="level2">
+
+<p>
+
+<img src="images/transistor2.png" class="mediacenter" alt="" />
+</p>
+
+<p>
+Транзистор усиливает максимально допустимый ток в <em>h<sub>fe</sub></em> раз:
+</p>
+
+<p>
+<img src="images/transistor3.png" />
+</p>
+
+</div>
+
+<h2 class="sectionedit5">Пример расчёта</h2>
+<div class="level2">
+
+<p>
+
+Если управляющий сигнал на базе транзистора с <em>h<sub>fe</sub></em> и резистором номиналом
+1 кОм составляет 5 вольт:
+
+</p>
+<ul>
+<li class="level1"><div class="li"> Какой максимальный ток сможет пропустить через себя транзистор?</div>
+</li>
+<li class="level1"><div class="li"> Каким по величине будет управляющий ток?</div>
+</li>
+</ul>
+
+</div>
+
+<h3 class="sectionedit6"><a name="дано" id="дано">Дано</a></h3>
+<div class="level3">
+
+<p>
+<img src="images/transistor4.png" />
+</p>
+
+</div>
+
+<h3 class="sectionedit7">Найти</h3>
+<div class="level3">
+
+<p>
+<img src="images/transistor5.png" />
+</p>
+
+</div>
+
+<h3 class="sectionedit8"><a name="решение" id="решение">Решение</a></h3>
+<div class="level3">
+
+<p>
+<img src="images/transistor6.png" />
+</p>
+
+</div>
+
+<h3 class="sectionedit9"><a name="вывод" id="вывод">Вывод</a></h3>
+<div class="level3">
+
+<p>
+
+Если на базу подаётся 5 В через резистор в 1 кОм, транзистор
+откроется настолько, что будет способен пропустить до 250 мА.
+При этом управляющий ток составит всего 5 мА
+</p>
+
+</div>
+        </div>
+      </div>
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../jquery.min.js"></script>
+    <script src="../bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<!--    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>-->
+  </body>
+</html>

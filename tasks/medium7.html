@@ -1,0 +1,133 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SIS - Arduino - Секундомер</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../custom.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../monokai_sublime.css">
+    <script src="../highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <!-- Static navbar -->
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <img src="http://10.0.0.2/mail/logo.png" height="50px;" class="navbar-logo"/>
+            <div class="navbar-brand">Arduino club</div>
+          </div>
+        </div>
+      </nav>
+
+    <ol class="breadcrumb">
+      <li><a href="../index.html">Главная</a></li>
+      <li class="active">Эксперимент - Секундомер</li>
+    </ol>
+
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron">
+      <div class="row">
+        <h2>Секундомер</h2>
+        В этом эксперименте мы создаем секундомер, который считает до 10.
+      </div>
+      <div class="row">
+        <h3>Список деталей для эксперимента</h3>
+        <ul>
+            <li>1 7-сегментный LED</li>
+            <li>7 резисторов номиналом 220 Ом</li>
+            <li>7 проводов</li>
+        </ul>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+            <h3>Схема на макетке</h3>
+            <img width="100%" src="images/medium7_bb.png"/>
+        </div>
+        <div class="col-md-6">
+            <h3>Скетч</h3>
+            <pre>
+            <code class="c++">#define FIRST_SEGMENT_PIN   2
+#define SEGMENT_COUNT       7
+ 
+// префикс «0b» означает, что целое число за ним записано в
+// в двоичном коде. Единицами мы обозначим номера сегментов
+// индикатора, которые должны быть включены для отображения
+// арабской цифры. Всего цифр 10, поэтому в массиве 10 чисел.
+// Нам достаточно всего байта (англ. byte, 8 бит) для хранения
+// комбинации сегментов для каждой из цифр.
+byte numberSegments[10] = {
+  0b00111111, 0b00001010, 0b01011101, 0b01011110, 0b01101010,
+  0b01110110, 0b01110111, 0b00011010, 0b01111111, 0b01111110,
+};
+ 
+void setup()
+{
+  for (int i = 0; i < SEGMENT_COUNT; ++i)
+    pinMode(i + FIRST_SEGMENT_PIN, OUTPUT);
+}
+ 
+void loop()
+{
+  // определяем число, которое собираемся отображать. Пусть им
+  // будет номер текущей секунды, зацикленный на десятке
+  int number = (millis() / 1000) % 10;
+  // получаем код, в котором зашифрована арабская цифра
+  int mask = numberSegments[number];
+  // для каждого из 7 сегментов индикатора...
+  for (int i = 0; i < SEGMENT_COUNT; ++i) {
+    // ...определяем: должен ли он быть включён. Для этого
+    // считываем бит (англ. read bit), соответствующий текущему
+    // сегменту «i». Истина — он установлен (1), ложь — нет (0)
+    boolean enableSegment = bitRead(mask, i);
+    // включаем/выключаем сегмент на основе полученного значения
+    digitalWrite(i + FIRST_SEGMENT_PIN, enableSegment);
+  }
+}            </code>
+            </pre>
+        </div>
+      </div>
+      <div class="row">
+        <h3>Обратите внимание</h3>
+<ul>
+<li class="level1"><div class="li"> Выводы 3 и 8 семисегментного индикатора оба являются катодами, к земле можете подключать любой из них.</div>
+</li>
+<li class="level1"><div class="li"> Внимательно рассмотрите схему, сопоставьте сегменты индикатора с номерами его ножек, а те, в свою очередь, с пинами Arduino, к которым мы их подключаем.</div>
+</li>
+<li class="level1"><div class="li"> Вывод 5 индикатора — это точка. Мы не используем её в этом эксперименте</div>
+</li>
+<li class="level1"><div class="li"> Сегменты индикатора — просто светодиоды, поэтому мы используем резистор с каждым из них.</div>
+</li>
+</ul>
+      </div>
+      </div>
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../jquery.min.js"></script>
+    <script src="../bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<!--    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>-->
+  </body>
+</html>
